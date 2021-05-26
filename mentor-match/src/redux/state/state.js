@@ -1,4 +1,5 @@
 export default {
     error: "",
-    employees:{ employeesList:[], matchCategories:[] }
+    employees:{ employeesList:[], matchCategories:[] },
+    signUp:{ visible: false}
 }

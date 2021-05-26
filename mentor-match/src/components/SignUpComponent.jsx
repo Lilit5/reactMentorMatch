@@ -3,19 +3,24 @@ import Header from './Headers/HeaderComponent';
 import { useSelector, useDispatch, connect } from 'react-redux'
 import { getEmployees } from '../redux/actions/employeeActions'
 import { styles } from './styles/styles'
+import { changeStateByNestedKey } from '../redux/actions/employeeActions'
 
 
 function SignUp() {
     const classes = styles();
     const dispatch = useDispatch();
     const employees = useSelector(state => state.employeeData.employees)
+    const signUpData = useSelector(state => state.employeeData.signUp)
     console.log("employees -------", employees)
 
     useEffect(() => {
         dispatch(getEmployees())
     }, [])
 
-
+    function continueRegistration(){
+        // TODO add all inputs validation uppon this click
+        dispatch(changeStateByNestedKey('signUp', 'visible', !signUpData.visible))
+    }
 
     return (
         <Header>
@@ -47,10 +52,9 @@ function SignUp() {
                 </ul>
 
                 <br />
-                <button>Continue</button>
+                <button onClick={() => continueRegistration()}>Continue</button>
             </div>
-            {/* TODO second part should be inisible untill 1st part is over */}
-            <div>
+            <div className={ signUpData.visible ? classes.visible : classes.hidden}>
                 <h3>Step 2</h3>
                 <hr />
                 <label htmlFor="passwd"></label>
