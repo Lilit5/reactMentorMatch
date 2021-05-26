@@ -2,10 +2,11 @@ import React, { useEffect } from 'react';
 import Header from './Headers/HeaderComponent';
 import { useSelector, useDispatch, connect } from 'react-redux'
 import { getEmployees } from '../redux/actions/employeeActions'
-
+import { styles } from './styles/styles'
 
 
 function SignUp() {
+    const classes = styles();
     const dispatch = useDispatch();
     const employees = useSelector(state => state.employeeData.employees)
     console.log("employees -------", employees)
@@ -19,7 +20,7 @@ function SignUp() {
     return (
         <Header>
             <div>
-                <h3>Step 1</h3>
+                <h3 className={classes.colorRed}>Step 1</h3>
                 <hr />
                 <label htmlFor="name"></label>
                 <input type="text" id="name" placeholder="Name" />
