@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Header from './Headers/HeaderComponent';
 
-
 function SignUp() {
 
     return (
