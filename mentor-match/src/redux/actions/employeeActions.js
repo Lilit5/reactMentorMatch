@@ -4,7 +4,7 @@ const DATA_SERVER = 'http://localhost:3001/data'
 
 export function changeStateByNestedKey(key1, key2, val) {
     return {
-        type: 'changeStateByKey',
+        type: 'changeStateByNestedKey',
         key1,
         key2,
         val,
@@ -29,8 +29,13 @@ export function setError(msg) {
 export function getEmployees() {
     return function(dispatch) {
         axios.get(DATA_SERVER).then(response => {
-            console.log("response ", response.data);
-            dispatch(changeStateByKey('employees', response.data))
+            const allCategories  = Object.keys((response.data)[0]);
+            const categoriesToMatch = allCategories.filter(el => el !== 'first_name' && el !== 'last_name'  && el !== 'gender'  && el !== 'email')
+            dispatch(changeStateByNestedKey('employees', 'matchCategories', categoriesToMatch))
+            dispatch(changeStateByNestedKey('employees', 'employeesList', response.data))
+            
+        }).catch(err => {
+            console.log("errrrrrrrrrrrrrr ",err);
         })
     }
 }
