@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Header from './Headers/HeaderComponent';
+import { connect } from 'react-redux'
 
 function MatchSuggestion() {
 
@@ -19,4 +20,4 @@ function MatchSuggestion() {
     )
 }
 
-export default MatchSuggestion;
+export default connect(r => r)(MatchSuggestion);

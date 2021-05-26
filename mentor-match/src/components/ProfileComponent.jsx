@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom';
 import ProfileHeader from './Headers/ProfileHeaderComponent';
+import { connect } from 'react-redux'
 
 function Profile() {
 
@@ -15,4 +16,4 @@ function Profile() {
     )
 }
 
-export default Profile;
+export default connect(r => r)(Profile);

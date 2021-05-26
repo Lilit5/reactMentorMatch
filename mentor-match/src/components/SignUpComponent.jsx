@@ -1,7 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Header from './Headers/HeaderComponent';
+import { useSelector, useDispatch, connect } from 'react-redux'
+import { getEmployees } from '../redux/actions/employeeActions'
+
+
 
 function SignUp() {
+    const dispatch = useDispatch();
+    const employees = useSelector(state => state.employeeData.employees)
+    console.log("employees", employees)
+    useEffect(() => {
+        dispatch(getEmployees())
+    }, [])
 
     return (
         <Header>
@@ -21,7 +31,7 @@ function SignUp() {
                 <button>Continue</button>
             </div>
             {/* TODO second part should be inisible untill 1st part is over */}
-            <div> 
+            <div>
                 <h3>Step 2</h3>
                 <hr />
                 <label htmlFor="passwd"></label>
@@ -35,4 +45,4 @@ function SignUp() {
     )
 }
 
-export default SignUp;
+export default connect(r => r)(SignUp);

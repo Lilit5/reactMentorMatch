@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Header from './Headers/HeaderComponent'
+import { connect } from 'react-redux'
 
 function Login() {
 
@@ -19,4 +20,4 @@ function Login() {
     )
 }
 
-export default Login;
+export default connect(r => r)(Login)
