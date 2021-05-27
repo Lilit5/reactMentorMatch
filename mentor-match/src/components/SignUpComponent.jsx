@@ -1,25 +1,32 @@
 import React, { useEffect } from 'react';
 import Header from './Headers/HeaderComponent';
 import { useSelector, useDispatch, connect } from 'react-redux'
-import { getEmployees } from '../redux/actions/employeeActions'
+import { getEmployees, changeStateByNestedKey } from '../redux/actions/employeeActions'
 import { styles } from './styles/styles'
-import { changeStateByNestedKey } from '../redux/actions/employeeActions'
+import Utils from '../utils/utils'
 
 
 function SignUp() {
     const classes = styles();
+    const utils = new Utils();
     const dispatch = useDispatch();
     const employees = useSelector(state => state.employeeData.employees)
     const signUpData = useSelector(state => state.employeeData.signUp)
     console.log("employees -------", employees)
+    const uniqueCategories = utils.getUniqueValuesFromArrayOfObjs(employees.employeesList, employees.matchCategories) ;
+   
 
     useEffect(() => {
         dispatch(getEmployees())
     }, [])
 
-    function continueRegistration(){
+    function continueRegistration() {
         // TODO add all inputs validation uppon this click
         dispatch(changeStateByNestedKey('signUp', 'visible', !signUpData.visible))
+    }
+
+    function registerEmployee() {
+
     }
 
     return (
@@ -38,9 +45,9 @@ function SignUp() {
                         employees.matchCategories.map((category, index) => {
                             return <li key={`${category}${index}`}>
                                 <select>
-                                    <option value="">{category}</option>
+                                    <option value="">{`-- ${category} --`}</option>
                                     {
-                                        employees.employeesList.map((empl, ind) => {
+                                        uniqueCategories.map((empl, ind) => {
                                             return <option key={`${empl[category]}${ind}`}>{empl[category]}</option>
                                         })
                                     }
@@ -54,7 +61,7 @@ function SignUp() {
                 <br />
                 <button onClick={() => continueRegistration()}>Continue</button>
             </div>
-            <div className={ signUpData.visible ? classes.visible : classes.hidden}>
+            <div className={signUpData.visible ? classes.visible : classes.hidden}>
                 <h3>Step 2</h3>
                 <hr />
                 <label htmlFor="passwd"></label>
