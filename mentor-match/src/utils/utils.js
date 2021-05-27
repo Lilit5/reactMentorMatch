@@ -16,7 +16,6 @@ class Utils {
                 return categoryValuesArr.indexOf(item[cat]) === i
             });
         }
-        // console.log("****************** uniqueCategories", uniqueCategories);
         return uniqueCategories
     }
 
@@ -30,7 +29,9 @@ class Utils {
                 }
             }
         }
-        console.log("matches ------- ", matches);
+        // make an aray of objects with unique values
+        const unique = [...new Set(matches.map(JSON.stringify))].map(JSON.parse);
+        return unique
     }
 
 }
