@@ -8,9 +8,7 @@ class Utils {
      */
     getUniqueValuesFromArrayOfObjs(arrOfObjs, filterBy) {
         let uniqueCategories = arrOfObjs;
-        // uniqueCategories = [...new Set(arrOfObjs.map(JSON.stringify))].map(JSON.parse);
         for (let cat of filterBy) {
-        // uniqueCategories = [... new Set([].concat(...arrOfObjs).filter(el => cat in el))];
             uniqueCategories = uniqueCategories.filter((item, i, ar) => {
                 const categoryValuesArr = ar.map((el) => el[cat]);
                 return categoryValuesArr.indexOf(item[cat]) === i
@@ -19,9 +17,15 @@ class Utils {
         return uniqueCategories
     }
 
+    /**
+     * Function finds and returns matched employees from given list by choosen categories
+     * 
+     * @param {Object} selectedCategories 
+     * @param {Array} employeesList 
+     * @returns Array of matched employees
+     */
     getSuggestions(selectedCategories, employeesList) {
         const matches = [];
-        console.log("selectedCategories --- ", selectedCategories, "employeesList -- ", employeesList);
         for (let [category, value] of Object.entries(selectedCategories)) {
             for (let employee of employeesList) {
                 if (employee[category] === value) {
@@ -31,7 +35,7 @@ class Utils {
         }
         // make an aray of objects with unique values
         const unique = [...new Set(matches.map(JSON.stringify))].map(JSON.parse);
-        return unique
+        return Object.values(unique)
     }
 
 }

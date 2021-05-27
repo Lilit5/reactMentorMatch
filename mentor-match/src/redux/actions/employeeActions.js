@@ -10,6 +10,14 @@ export function changeStateByNestedKey(key1, key2, val) {
         val,
     }
 }
+export function appendToStateByNestedKey(key1, key2, val) {
+    return {
+        type: 'appendToStateByNestedKey',
+        key1,
+        key2,
+        val,
+    }
+}
 
 export function changeStateByKey(key, val) {
     return {
@@ -23,6 +31,15 @@ export function setError(msg) {
     return {
         type: 'setError',
         msg
+    }
+}
+
+export function deleteByIndex(key1, key2, index) {
+    return {
+        type: 'deleteByIndex',
+        key1,
+        key2,
+        index
     }
 }
 

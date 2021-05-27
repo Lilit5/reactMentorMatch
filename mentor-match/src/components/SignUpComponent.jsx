@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import {Link} from 'react-router-dom'
 import Header from './Headers/HeaderComponent';
 import { useSelector, useDispatch, connect } from 'react-redux'
-import { getEmployees, changeStateByNestedKey, changeStateByKey } from '../redux/actions/employeeActions'
-import { styles } from './styles/styles'
+import { getEmployees, changeStateByNestedKey } from '../redux/actions/employeeActions'
+import { styles } from './styles/SignUpStyles'
 import Utils from '../utils/utils'
 
 
@@ -13,6 +13,7 @@ function SignUp() {
     const dispatch = useDispatch();
     const employees = useSelector(state => state.employeeData.employees)
     const signUpData = useSelector(state => state.employeeData.signUp)
+    const selectedCategories = useSelector(state => state.employeeData.selectedCategories)
     console.log("employees -------", employees)
     const uniqueCategories = utils.getUniqueValuesFromArrayOfObjs(employees.employeesList, employees.matchCategories) ;
    
@@ -28,6 +29,8 @@ function SignUp() {
 
     function getSelectedCategories(value, category){
         dispatch(changeStateByNestedKey('selectedCategories', category, value))
+        const suggestionsList = utils.getSuggestions(selectedCategories, employees.employeesList)
+        dispatch(changeStateByNestedKey('employees','matchedEmployees', suggestionsList))
     }
 
     function registerEmployee() {
@@ -37,7 +40,7 @@ function SignUp() {
     return (
         <Header>
             <div>
-                <h3 className={classes.colorRed}>Step 1</h3>
+                <h3>Step 1</h3>
                 <hr />
                 <label htmlFor="name"></label>
                 <input type="text" id="name" placeholder="Name" required/>
