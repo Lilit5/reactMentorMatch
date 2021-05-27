@@ -1,8 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Header from './Headers/HeaderComponent';
-import { connect } from 'react-redux'
+import { useSelector, useDispatch, connect } from 'react-redux'
+import Utils from '../utils/utils'
+
 
 function MatchSuggestion() {
+    const dispatch = useDispatch();
+    const utils = new Utils();
+    const selectedCategories = useSelector(state => state.employeeData.selectedCategories)
+    const employees = useSelector(state => state.employeeData.employees)
+    const suggestionsList = utils.getSuggestions(selectedCategories, employees.employeesList)
 
     return (
         <Header>

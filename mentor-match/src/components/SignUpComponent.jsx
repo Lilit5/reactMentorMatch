@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
+import {Link} from 'react-router-dom'
 import Header from './Headers/HeaderComponent';
 import { useSelector, useDispatch, connect } from 'react-redux'
-import { getEmployees, changeStateByNestedKey } from '../redux/actions/employeeActions'
+import { getEmployees, changeStateByNestedKey, changeStateByKey } from '../redux/actions/employeeActions'
 import { styles } from './styles/styles'
 import Utils from '../utils/utils'
 
@@ -25,6 +26,10 @@ function SignUp() {
         dispatch(changeStateByNestedKey('signUp', 'visible', !signUpData.visible))
     }
 
+    function getSelectedCategories(value, category){
+        dispatch(changeStateByNestedKey('selectedCategories', category, value))
+    }
+
     function registerEmployee() {
 
     }
@@ -35,16 +40,16 @@ function SignUp() {
                 <h3 className={classes.colorRed}>Step 1</h3>
                 <hr />
                 <label htmlFor="name"></label>
-                <input type="text" id="name" placeholder="Name" />
+                <input type="text" id="name" placeholder="Name" required/>
                 <label htmlFor="last-name"></label>
-                <input type="text" id="last-name" placeholder="Last Name" />
+                <input type="text" id="last-name" placeholder="Last Name" required/>
                 <label htmlFor="email"></label>
-                <input type="email" id="email" placeholder="Email" />
+                <input type="email" id="email" placeholder="Email" required/>
                 <ul>
                     {
                         employees.matchCategories.map((category, index) => {
                             return <li key={`${category}${index}`}>
-                                <select>
+                                <select onChange={(e) => getSelectedCategories(e.target.value, category)}>
                                     <option value="">{`-- ${category} --`}</option>
                                     {
                                         uniqueCategories.map((empl, ind) => {
@@ -69,7 +74,7 @@ function SignUp() {
                 <label htmlFor="confirm-passwd"></label>
                 <input type="password" id="confirm-passwd" placeholder="Confirm Pasword" />
                 <br />
-                <button>Sign up</button>
+                <Link to="/match-suggestions" onClick={() => registerEmployee()}>Sign up</Link>
             </div>
         </Header>
     )
