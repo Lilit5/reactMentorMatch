@@ -33,9 +33,9 @@ function SignUp() {
         dispatch(changeStateByNestedKey('employees','matchedEmployees', suggestionsList))
     }
 
-    function registerEmployee() {
+    // function registerEmployee() {
 
-    }
+    // }
 
     return (
         <Header>
@@ -77,7 +77,8 @@ function SignUp() {
                 <label htmlFor="confirm-passwd"></label>
                 <input type="password" id="confirm-passwd" placeholder="Confirm Pasword" />
                 <br />
-                <Link to="/match-suggestions" onClick={() => registerEmployee()}>Sign up</Link>
+                <Link to="/match-suggestions" >Sign up</Link>
+                {/* <Link to="/match-suggestions" onClick={() => registerEmployee()}>Sign up</Link> */}
             </div>
         </Header>
     )

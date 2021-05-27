@@ -8,7 +8,7 @@ function Profile() {
     return (
         <ProfileHeader>
             <div>
-                <img src="" alt="avatar"/>
+                <img src="images/avatar.jpg" alt="avatar"/>
                 <a href="">Manage Account</a>
                 <Link to="/match-suggestions">Manage Suggestions List</Link>
             </div>

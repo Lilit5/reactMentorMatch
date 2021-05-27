@@ -3,20 +3,27 @@ import Header from './Headers/HeaderComponent';
 import { useSelector, useDispatch, connect } from 'react-redux'
 import { styles } from './styles/SuggestionsStyles'
 import Utils from '../utils/utils'
-import { deleteByIndex, appendToStateByNestedKey } from '../redux/actions/employeeActions'
-
+import {Link} from 'react-router-dom'
+import { deleteByIndex, appendToStateByNestedKey, setError } from '../redux/actions/employeeActions'
+import { Draggable } from "react-drag-reorder";
 
 function MatchSuggestion() {
     const dispatch = useDispatch();
     const classes = styles();
     const utils = new Utils();
     const employees = useSelector(state => state.employeeData.employees)
+    const error = useSelector(state => state.employeeData.error)
 
 
     function selectFromSuggestionList(index) {
-        const itemToBeAdded = employees.matchedEmployees[index];
-        dispatch(deleteByIndex('employees', 'matchedEmployees', index))
-        dispatch(appendToStateByNestedKey('employees', 'choosedSuggestions', itemToBeAdded))
+        if (employees.choosedSuggestions.length >= 5) {
+            dispatch(setError("You cannot choose more than 5 mentors"))
+        } else {
+            dispatch(setError(""))
+            const itemToBeAdded = employees.matchedEmployees[index];
+            dispatch(deleteByIndex('employees', 'matchedEmployees', index))
+            dispatch(appendToStateByNestedKey('employees', 'choosedSuggestions', itemToBeAdded))
+        }
     }
 
     function deSelectFromSuggestionList(index) {
@@ -24,12 +31,17 @@ function MatchSuggestion() {
         dispatch(deleteByIndex('employees', 'choosedSuggestions', index))
         dispatch(appendToStateByNestedKey('employees', 'matchedEmployees', itemToBeAdded))
     }
+    console.log("employees.choosedSuggestions.length ///////// ", employees.choosedSuggestions);
 
     return (
         <Header>
             <div>
+                <h3>Step 3</h3>
+                <hr />
                 <p className="warning-msg"></p>
                 <div>
+                    <p>{error}</p>
+                    {/* <Draggable> */}
                     {
                         employees.choosedSuggestions.map((employee, ind) => {
                             return <li key={`${employee.first_name}${ind}`}
@@ -45,6 +57,7 @@ function MatchSuggestion() {
                             </li>
                         })
                     }
+                    {/* </Draggable> */}
                 </div>
                 <div>
                     <ul>
@@ -65,7 +78,7 @@ function MatchSuggestion() {
                         }
                     </ul>
                 </div>
-                <button>Confirm</button>
+                <Link to="/profile">Confirm</Link>
             </div>
         </Header>
     )
