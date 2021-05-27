@@ -3,6 +3,7 @@ import Login from './components/LoginComponent';
 import SignUp from './components/SignUpComponent';
 import MatchSuggestion from './components/MatchSuggestionComponent';
 import Profile from './components/ProfileComponent';
+import PrivateRoute from './PrivateRoute'
 
 function App() {
   return (
@@ -10,8 +11,8 @@ function App() {
       <Router>
           <Route path="/" exact component={Login} />
           <Route path="/sign-up" component={SignUp} />
-          <Route path="/match-suggestions" component={MatchSuggestion} />
-          <Route path="/profile" component={Profile} />
+				  <PrivateRoute path="/match-suggestions" component={MatchSuggestion} />
+				  <PrivateRoute path="/profile" component={Profile} />
       </Router>
     </div>
   );

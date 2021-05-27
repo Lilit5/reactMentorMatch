@@ -6,5 +6,6 @@ export const styles = createUseStyles({
     },
     visible: {
         display: 'block'
-    }
+    },
+    
 })

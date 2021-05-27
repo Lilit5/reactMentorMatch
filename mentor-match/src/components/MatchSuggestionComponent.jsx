@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import Header from './Headers/HeaderComponent';
 import { useSelector, useDispatch, connect } from 'react-redux'
 import { styles } from './styles/SuggestionsStyles'
+import { generalStyles } from './styles/generalStyles';
 import Utils from '../utils/utils'
 import {Link} from 'react-router-dom'
 import { deleteByIndex, appendToStateByNestedKey, setError } from '../redux/actions/employeeActions'
@@ -10,6 +11,7 @@ import { Draggable } from "react-drag-reorder";
 function MatchSuggestion() {
     const dispatch = useDispatch();
     const classes = styles();
+    const generalclasses = generalStyles();
     const utils = new Utils();
     const employees = useSelector(state => state.employeeData.employees)
     const error = useSelector(state => state.employeeData.error)
@@ -31,7 +33,6 @@ function MatchSuggestion() {
         dispatch(deleteByIndex('employees', 'choosedSuggestions', index))
         dispatch(appendToStateByNestedKey('employees', 'matchedEmployees', itemToBeAdded))
     }
-    console.log("employees.choosedSuggestions.length ///////// ", employees.choosedSuggestions);
 
     return (
         <Header>
@@ -78,7 +79,7 @@ function MatchSuggestion() {
                         }
                     </ul>
                 </div>
-                <Link to="/profile">Confirm</Link>
+                <Link to="/profile" className={`${generalclasses.btn}`}>Confirm</Link>
             </div>
         </Header>
     )

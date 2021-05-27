@@ -1,9 +1,16 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
 import { styles } from '../styles/HeaderStyles'
+import { useDispatch, connect } from 'react-redux'
+import { changeStateByKey } from '../../redux/actions/employeeActions'
 
 function ProfileHeader(props) {
     const classes = styles();
+    const dispatch = useDispatch();
+
+    function signOut(){
+        dispatch(changeStateByKey('signedIn', false))
+    }
 
     return (
         <div>
@@ -14,7 +21,7 @@ function ProfileHeader(props) {
                     </Link>
                 </li>
                 <li>
-                    <Link to="/">Sign out</Link>
+                    <Link onClick={() => signOut()} to="/">Sign out</Link>
                 </li>
             </ul>
             <div>
@@ -24,4 +31,4 @@ function ProfileHeader(props) {
     )
 }
 
-export default ProfileHeader;
+export default connect(r => r)(ProfileHeader);
