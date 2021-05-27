@@ -97,7 +97,7 @@ function SignUp() {
             <div className={`${signUpData.visible ? '' : classes.hidden} ${generalClasses.flexVertical}`}>
                 <h3>Step 2</h3>
                 <hr />
-                <p>{error}</p>
+                <p className={`${error ? generalClasses.warning : ''}`}>{error}</p>
                 <label htmlFor="passwd"></label>
                 <input className={`${generalClasses.input}`}
                     type="password"
