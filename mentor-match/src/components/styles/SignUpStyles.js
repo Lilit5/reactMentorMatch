@@ -7,5 +7,8 @@ export const styles = createUseStyles({
     visible: {
         display: 'block'
     },
-    
+    option: {
+        backgroundColor: '#7840c7',
+        color: 'white'
+    }
 })

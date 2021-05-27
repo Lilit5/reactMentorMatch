@@ -25,5 +25,11 @@ export const generalStyles = createUseStyles({
     },
     noListDecoration: {
         listStyleType: 'none',
+    },
+    flexVertical: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        alignItems: 'center'
     }
 })
