@@ -16,9 +16,8 @@ function SignUp() {
     const history = useHistory();
     const employees = useSelector(state => state.employeeData.employees)
     const signUpData = useSelector(state => state.employeeData.signUp)
-    const { passwd, validationPasswd, isValid } = useSelector(state => state.employeeData.password)
+    const { passwd, validationPasswd } = useSelector(state => state.employeeData.password)
     const selectedCategories = useSelector(state => state.employeeData.selectedCategories)
-    console.log("employees -------", employees)
     const uniqueCategories = utils.getUniqueValuesFromArrayOfObjs(employees.employeesList, employees.matchCategories);
     const error = useSelector(state => state.employeeData.error)
 
@@ -39,11 +38,10 @@ function SignUp() {
     }
 
     function validatePassword(passwd, validationPasswd) {
-        console.log("passwd validation ", passwd, validationPasswd);
         if (passwd === "" || validationPasswd === "") {
             dispatch(setError("Please fill in all fields"))
         }else if (passwd !== validationPasswd) {
-            dispatch(setError("Passwords not match, please retype"))
+            dispatch(setError("Passwords does not match, please retype"))
         } else {
             dispatch(setError(""))
             history.push('/match-suggestions')
@@ -63,7 +61,7 @@ function SignUp() {
                 <h3>Step 1</h3>
                 <hr />
                 <label htmlFor="name"></label>
-                <input className={`${generalClasses.input}`} className={`${generalClasses.input}`} type="text" id="name" placeholder="Name" required />
+                <input className={`${generalClasses.input}`} type="text" id="name" placeholder="Name" required />
                 <label htmlFor="last-name"></label>
                 <input className={`${generalClasses.input}`} type="text" id="last-name" placeholder="Last Name" required />
                 <label htmlFor="email"></label>

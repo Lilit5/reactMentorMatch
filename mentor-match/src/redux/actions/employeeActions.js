@@ -52,7 +52,7 @@ export function getEmployees() {
             dispatch(changeStateByNestedKey('employees', 'employeesList', response.data))
             
         }).catch(err => {
-            console.log("errrrrrrrrrrrrrr ",err);
+            console.log("An error has occured while reciving data from endpoint: msg - ",err);
         })
     }
 }

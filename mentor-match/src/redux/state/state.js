@@ -1,4 +1,4 @@
-export default {
+ const state = {
     error: "",
     employees:{ employeesList:[], matchCategories:[], matchedEmployees:[], choosedSuggestions:[] },
     selectedCategories:{},
@@ -6,3 +6,5 @@ export default {
     password: {passwd: "", validationPasswd: "", isValid: false},
     signedIn: false
 }
+
+export default state;

@@ -17,8 +17,9 @@ function employeeReducer(state = employeeState, action) {
             updatedState.error = action.msg;
             break;
         case 'deleteByIndex':
-            console.log('in delete key1 key2 index', updatedState[action.key1][action.key2]);
             updatedState[action.key1][action.key2].splice(action.index, 1)
+            break;
+        default:
             break;
     }
 

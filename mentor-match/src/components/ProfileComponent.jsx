@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import ProfileHeader from './Headers/ProfileHeaderComponent';
 import { styles } from './styles/ProfileStyles'
@@ -12,7 +12,7 @@ function Profile() {
             <div className={`${classes.flexHorizontal}`}>
                 <div className={`${classes.container}`}>
                     <img className={`${classes.avatarImg}`} src="images/avatar.jpg" alt="avatar" />
-                    <a href="">Manage Account</a>
+                    <a href="/">Manage Account</a>
                     <Link to="/match-suggestions">Manage Suggestions List</Link>
                 </div>
                 <div className={`${classes.newsFeed}`}>
