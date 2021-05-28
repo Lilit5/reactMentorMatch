@@ -8,7 +8,6 @@ export const styles = createUseStyles({
     },
     list: {
         listStyleType: 'none',
-        width: '100%',
         height: '70px',
         backgroundColor: '#742adb',
         '& li': {

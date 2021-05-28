@@ -5,6 +5,11 @@ export const styles = createUseStyles({
         width: '200px',
         height: '200px'
     },
+    flexHorizontal: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'flex-start',  
+    },
     container: {
         display: 'flex',
         flexDirection: 'column',
@@ -22,6 +27,26 @@ export const styles = createUseStyles({
                 backgroundColor: '#742adb',
                 color: 'white'
             }
+        }
+    },
+    newsFeed: {
+        boxSizing: 'border-box',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-around',
+        alignItems: 'flex-start',
+        padding: '0 40px',
+        margin: '0 100px',
+        '& div': {
+            border: '1px solid gray',
+            margin: '10px 0',
+            padding: '15px',
+            '& p': {
+                textAlign: 'justify'
+            }
+        },
+        '& img': {
+            width: '100%',
         }
     }
 })
