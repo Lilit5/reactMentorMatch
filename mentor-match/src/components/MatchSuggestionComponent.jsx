@@ -41,11 +41,11 @@ function MatchSuggestion() {
             <div className={`${generalClasses.flexVertical}`}>
                 <h3>Step 3</h3>
                 <hr />
-                <p className={`${generalClasses.info}`}>add/remove mentors by clicking on items</p>
+                <p className={`${generalClasses.info}`}>add/remove mentors by clicking on items or change order by drag and drop</p>
                 <div className={`${generalClasses.container}`}>
                     <p className={`${error ? generalClasses.warning : ''}`}>{error}</p>
                     <p><em>Selected list</em></p>
-                    {/* <Draggable> */}
+                    <Draggable>
                     {
                         employees.choosedSuggestions.length === 0 ?
                             <h4 className={`${generalClasses.warning}`}>
@@ -66,7 +66,7 @@ function MatchSuggestion() {
                                 </li>
                             })
                     }
-                    {/* </Draggable> */}
+                    </Draggable>
                 </div>
                 <div className={`${generalClasses.container}`}>
                     <p><em>Suggested list</em></p>
